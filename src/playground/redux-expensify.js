@@ -8,14 +8,16 @@ const addExpense = (
     note = '', 
     amount = 0, 
     createdAt = 0 
-  } = {}) => ({
-  type: 'ADD_EXPENSE',
-  expense: {
-    id: uuid(),
-    description,
-    note,
-    amount,
-    createdAt
+  } = {}
+) => (
+  {
+    type: 'ADD_EXPENSE',
+    expense: {
+      id: uuid(),
+      description,
+      note,
+      amount,
+      createdAt
   }
 })
 
@@ -112,18 +114,18 @@ store.dispatch(setTextFilter())
 
 
 
-const demoState = {
-  expenses: [{
-    id: 'failnfe',
-    description: 'January Rent',
-    note: 'This was the final payment for that address',
-    amount: 54500,
-    createdAt: 0
-  }],
-  filters: {
-    text: 'rent',
-    sortBy: 'amount', //date or amount
-    startDate: undefined,
-    endDate: undefined
-  }
-}
+// const demoState = {
+//   expenses: [{
+//     id: 'failnfe',
+//     description: 'January Rent',
+//     note: 'This was the final payment for that address',
+//     amount: 54500,
+//     createdAt: 0
+//   }],
+//   filters: {
+//     text: 'rent',
+//     sortBy: 'amount', //date or amount
+//     startDate: undefined,
+//     endDate: undefined
+//   }
+// }
