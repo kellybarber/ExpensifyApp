@@ -7,8 +7,7 @@ const ExpenseListFilters = (props) => (
     <input type='text' value={props.filters.text} onChange={(e) => {
       props.dispatch(setTextFilter(e.target.value))
     }}/>
-    <select onChange={(e) => {
-      console.log(e.target.value)
+    <select value={props.filters.sortBy} onChange={(e) => {
       e.target.value === 'date' ? props.dispatch(sortByDate()) : props.dispatch(sortByAmount())
     }}>
       <option value='date'>Date</option>
