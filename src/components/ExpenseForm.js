@@ -10,7 +10,7 @@ export default class ExpenseForm extends React.Component {
     amount: '',
     createdAt: moment(),
     calendarFocused: false,
-    error: false
+    error: ''
   }
 
   onDescriptionChange = (e) => {
@@ -28,7 +28,7 @@ export default class ExpenseForm extends React.Component {
     }
   } 
   onDateChange = (createdAt) => {
-    if (createAt) {
+    if (createdAt) {
       this.setState(() => ({ createdAt }))
     }
   }
@@ -39,16 +39,22 @@ export default class ExpenseForm extends React.Component {
     e.preventDefault()
   
     if (!this.state.description || !this.state.amount) {
-      this.setState(() => ({ error: true }))
+      this.setState(() => ({ error: 'Please add description and amount' }))
     } else {
-      this.setState(() => ({ error: false }))
+      this.setState(() => ({ error: '' }))
+      this.props.onSubmit({
+        description: this.state.description,
+        amount: parseFloat(this.state.amount, 10) * 100,
+        createdAt: this.state.createdAt.valueOf(),
+        note: this.state.note
+      })
     }
   }
 
   render() {
     return (
       <div>
-        {this.state.error && <p>You must fill in the description and amount</p>}
+        {this.state.error && <p>{this.state.error}</p>}
         <form onSubmit={this.onSubmit}>
           <input
             type='text'
